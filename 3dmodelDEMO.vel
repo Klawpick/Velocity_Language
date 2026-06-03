@@ -1,0 +1,72 @@
+window("Velocity 3D model rendering", 800, 600)
+
+mesh = load_obj("skull.obj")
+
+cam_x = 0
+cam_y = 0
+cam_z = 0 - 5
+
+yaw = 0
+pitch = 0
+
+rot = 0
+
+loop(1f)
+{
+    clear_screen()
+
+    speed = 100 * dt()
+
+    yaw = yaw + mouse_dx() * 0.003
+    pitch = pitch + mouse_dy() * 0.003
+
+    when(key_pressed("w"))
+    {
+        cam_x = cam_x + sin(yaw) * speed
+        cam_z = cam_z + cos(yaw) * speed
+    }
+
+    when(key_pressed("s"))
+    {
+        cam_x = cam_x - sin(yaw) * speed
+        cam_z = cam_z - cos(yaw) * speed
+    }
+
+    when(key_pressed("a"))
+    {
+        cam_x = cam_x - cos(yaw) * speed
+        cam_z = cam_z + sin(yaw) * speed
+    }
+
+    when(key_pressed("d"))
+    {
+        cam_x = cam_x + cos(yaw) * speed
+        cam_z = cam_z - sin(yaw) * speed
+    }
+
+    camera_rotation(
+        pitch,
+        yaw
+    )
+
+    camera(
+        cam_x,
+        cam_y,
+        cam_z
+    )
+
+    rot = rot + dt()
+
+    draw_mesh(
+        mesh,
+        -75,
+        20,
+        10,
+        90,
+        0,
+        0,
+        0.5
+    )
+
+    present()
+}

@@ -1,0 +1,16 @@
+window("Hello Velocity", 800, 600)
+
+loop(1f)
+{
+    clear_screen()
+
+    set_color(255, 255, 255)
+
+    draw_text(
+        "Hello World!",
+        330,
+        285
+    )
+
+    present()
+}
