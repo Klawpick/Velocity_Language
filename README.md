@@ -6,7 +6,8 @@ The project started as a way to learn how programming languages work and gradual
 
 Velocity is currently focused on game development and engine features while remaining easy to read and write. 
 
-Skull Demo 
+3D model Demo 
+<img width="1192" height="888" alt="1448cd72-91c2-4373-9ce4-e3fa96fd2101" src="https://github.com/user-attachments/assets/51795d64-1eb2-4c9e-9314-37c1a5a1bcf5" />
 
 ## **Features** 
 
