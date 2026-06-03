@@ -11,7 +11,7 @@ Velocity is currently focused on game development and engine features while rema
 
 ## **Features** 
 
-• Variables • Functions • Arrays • Imports • Conditional execution ( `when` ) • Loops • Keyboard input • Mouse input • Audio playback • 2D graphics • Text rendering • Image rendering • 3D cube rendering • OBJ model loading • Flat-shaded mesh rendering • FPS camera controls • Entity system • Collision detection 
+• Variables • Functions • Arrays • Conditional execution ( `when` ) • Loops • Keyboard input • Mouse input • Audio playback • 2D graphics • Text rendering • Image rendering • 3D cube rendering • OBJ model loading • Flat-shaded mesh rendering • FPS camera controls • Entity system • Collision detection 
 
 ## **Installation** 
 
