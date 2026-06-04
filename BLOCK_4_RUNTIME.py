@@ -1,6 +1,7 @@
 from BLOCK_1_AST import *
 from BLOCK_5_GRAPHICS import Graphics
 import math
+import random
 
 
 class ReturnException(Exception):
@@ -64,8 +65,9 @@ class Runtime:
 
         if isinstance(node, ImportStatement):
             filename = (
-                    node.module_name +
-                    ".vel"
+                    node.module_name
+                    .replace(".", "/")
+                    + ".vel"
             )
 
             with open(
@@ -907,6 +909,243 @@ class Runtime:
             )
 
             return key in obj
+
+        # -----------------------------
+        # ARRAYS
+        # -----------------------------
+
+        if node.name == "contains":
+            text = str(
+                self.evaluate(
+                    node.arguments[0]
+                )
+            )
+
+            search = str(
+                self.evaluate(
+                    node.arguments[1]
+                )
+            )
+
+            return search in text
+
+        if node.name == "replace":
+            text = str(
+                self.evaluate(
+                    node.arguments[0]
+                )
+            )
+
+            old = str(
+                self.evaluate(
+                    node.arguments[1]
+                )
+            )
+
+            new = str(
+                self.evaluate(
+                    node.arguments[2]
+                )
+            )
+
+            return text.replace(
+                old,
+                new
+            )
+
+        if node.name == "split":
+            text = str(
+                self.evaluate(
+                    node.arguments[0]
+                )
+            )
+
+            separator = str(
+                self.evaluate(
+                    node.arguments[1]
+                )
+            )
+
+            return text.split(
+                separator
+            )
+
+        if node.name == "save":
+            filename = str(
+                self.evaluate(
+                    node.arguments[0]
+                )
+            )
+
+            data = str(
+                self.evaluate(
+                    node.arguments[1]
+                )
+            )
+
+            with open(
+                    filename,
+                    "w"
+            ) as file:
+                file.write(data)
+
+            return None
+
+        if node.name == "load":
+            filename = str(
+                self.evaluate(
+                    node.arguments[0]
+                )
+            )
+
+            with open(
+                    filename,
+                    "r"
+            ) as file:
+                return file.read()
+
+        if node.name == "append":
+
+            arr = self.evaluate(
+                node.arguments[0]
+            )
+
+            value = self.evaluate(
+                node.arguments[1]
+            )
+
+            arr.append(value)
+
+            return None
+
+        if node.name == "remove":
+
+            arr = self.evaluate(
+                node.arguments[0]
+            )
+
+            if len(arr) == 0:
+                return None
+
+            return arr.pop()
+
+        if node.name == "count":
+
+            value = self.evaluate(
+                node.arguments[0]
+            )
+
+            return len(value)
+
+        # -----------------------------
+        # STRINGS
+        # -----------------------------
+
+        if node.name == "upper":
+
+            text = self.evaluate(
+                node.arguments[0]
+            )
+
+            return str(text).upper()
+
+        if node.name == "lower":
+
+            text = self.evaluate(
+                node.arguments[0]
+            )
+
+            return str(text).lower()
+
+        # -----------------------------
+        # RANDOM
+        # -----------------------------
+
+        if node.name == "random":
+
+            return random.random()
+
+        if node.name == "range":
+
+            minimum = int(
+                self.evaluate(
+                    node.arguments[0]
+                )
+            )
+
+            maximum = int(
+                self.evaluate(
+                    node.arguments[1]
+                )
+            )
+
+            return random.randint(
+                minimum,
+                maximum
+            )
+
+        # -----------------------------
+        # MATH
+        # -----------------------------
+
+        if node.name == "absolute":
+
+            value = self.evaluate(
+                node.arguments[0]
+            )
+
+            return abs(value)
+
+        if node.name == "floor":
+
+            value = self.evaluate(
+                node.arguments[0]
+            )
+
+            return math.floor(value)
+
+        if node.name == "ceiling":
+
+            value = self.evaluate(
+                node.arguments[0]
+            )
+
+            return math.ceil(value)
+
+        if node.name == "squareroot":
+
+            value = self.evaluate(
+                node.arguments[0]
+            )
+
+            return math.sqrt(value)
+
+        # -----------------------------
+        # TYPE
+        # -----------------------------
+
+        if node.name == "type":
+
+            value = self.evaluate(
+                node.arguments[0]
+            )
+
+            if isinstance(value, bool):
+                return "boolean"
+
+            if isinstance(value, str):
+                return "string"
+
+            if isinstance(value, list):
+                return "array"
+
+            if isinstance(value, (int, float)):
+                return "number"
+
+            if isinstance(value, dict):
+                return "entity"
+
+            return "unknown"
 
         # -----------------------------
         # User Functions
