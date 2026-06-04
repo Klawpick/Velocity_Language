@@ -234,7 +234,119 @@ The core interpreter, graphics system, input handling, and 3D rendering pipeline
 
 - Improved module system 
 
-- Compiler research 
+- Compiler research
+
+## Standard Library
+
+### Arrays
+
+```velocity
+items = [1, 2, 3]
+
+append(items, 4)
+
+log(count(items))
+
+remove(items)
+```
+
+Available functions:
+
+```velocity
+append(arr, value)
+remove(arr)
+count(arr)
+```
+
+### Strings
+
+```velocity
+text = "Velocity"
+
+log(upper(text))
+log(lower(text))
+```
+
+Available functions:
+
+```velocity
+upper(text)
+lower(text)
+contains(text, search)
+replace(text, old, new)
+split(text, separator)
+```
+
+### Random
+
+```velocity
+log(random())
+
+log(range(1, 10))
+```
+
+Available functions:
+
+```velocity
+random()
+range(min, max)
+```
+
+### Math
+
+```velocity
+log(absolute(-25))
+
+log(floor(5.9))
+
+log(ceiling(5.1))
+
+log(squareroot(144))
+```
+
+Available functions:
+
+```velocity
+absolute(x)
+floor(x)
+ceiling(x)
+squareroot(x)
+```
+
+### Type Information
+
+```velocity
+log(type(123))
+log(type("hello"))
+log(type(true))
+```
+
+Available function:
+
+```velocity
+type(value)
+```
+
+### File Storage
+
+```velocity
+save(
+    "score.txt",
+    "500"
+)
+
+score = load(
+    "score.txt"
+)
+```
+
+Available functions:
+
+```velocity
+save(file, data)
+load(file)
+```
+
 
 ## **License** 
 
