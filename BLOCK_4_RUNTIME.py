@@ -20,6 +20,8 @@ class Runtime:
 
         self.graphics = Graphics()
 
+        self.imported_modules = set()
+
         self.camera_x = 0
         self.camera_y = 0
         self.camera_z = -5
@@ -68,6 +70,13 @@ class Runtime:
                     node.module_name
                     .replace(".", "/")
                     + ".vel"
+            )
+
+            if filename in self.imported_modules:
+                return None
+
+            self.imported_modules.add(
+                filename
             )
 
             with open(
@@ -868,6 +877,13 @@ class Runtime:
                 "h": 1,
                 "d": 1
             }
+
+        if node.name == "clone":
+            obj = self.evaluate(
+                node.arguments[0]
+            )
+
+            return dict(obj)
 
         if node.name == "set":
 
