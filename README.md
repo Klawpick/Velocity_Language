@@ -18,7 +18,7 @@ Velocity is currently focused on game development and engine features while rema
 Install pygame: 
 
 ```
-pipinstallpygame
+pip install pygame
 ```
 
 1 
@@ -26,7 +26,7 @@ pipinstallpygame
 Run Velocity: 
 
 ```
-pythonmain.py
+main.py
 ```
 
 When prompted: 
